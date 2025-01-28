@@ -14,7 +14,8 @@ Immersive Gameplay: Includes background music and sound effects for a classic Ma
 Arrow Up: Move Mario up.
 Arrow Down: Move Mario down.
 Escape: Quit the game.
-![image](https://github.com/user-attachments/assets/3758efc7-65c4-417b-9619-51d229f645c4)
+![Screenshot (492)](https://github.com/user-attachments/assets/f30275a0-7ce3-4321-88c2-30126a5b55e4)
+
 
 
 
