@@ -1,0 +1,98 @@
+1. Game Components
+The game consists of the following major elements:
+
+Mario (the player): The player-controlled character that moves up and down.
+Dragon (the enemy): A dragon that moves up and down vertically, periodically shooting flames.
+Flames (projectiles): The dragon shoots fireballs that Mario must avoid.
+Obstacles: The game has cactus at the top and fire at the bottom, acting as boundaries Mario cannot cross.
+Scoring: The player's score increases when flames exit the screen without hitting Mario.
+Levels: The game progressively gets harder as the score increases by reducing the space Mario has to move.
+
+2. Main Classes and Their Logic
+The game relies on several classes to manage its objects:
+
+a) Topscore
+Tracks the highest score achieved across multiple sessions of the game.
+
+Attributes:
+high_score: Stores the top score.
+Methods:
+top_score(score): Updates and returns the highest score if the current score exceeds it.
+b) Dragon
+Represents the enemy dragon that moves up and down.
+
+Attributes:
+dragon_img: Image of the dragon.
+dragon_img_rect: Rectangle representing the dragon's position and size.
+up, down: Boolean flags to control the vertical movement of the dragon.
+Behavior:
+Moves vertically between the cactus (top boundary) and fire (bottom boundary).
+Shoots flames periodically.
+c) Flames
+Represents the fireballs shot by the dragon.
+
+Attributes:
+flames_img: Image of the flame.
+flames_img_rect: Rectangle representing its position and size.
+Behavior:
+Moves horizontally from right to left.
+If it exits the screen, the player earns points.
+Collides with Mario to end the game.
+d) Mario
+The player's character.
+
+Attributes:
+mario_img: Image of Mario.
+mario_img_rect: Rectangle representing Mario's position and size.
+up, down: Boolean flags to control Mario's vertical movement.
+Behavior:
+Moves up or down based on user input.
+Collides with flames or boundaries (cactus/fire), triggering the game over sequence.
+
+
+3. Game Logic
+
+a) Game Loop
+The core of the game runs inside the game_loop function, which is executed continuously. Here's how it works:
+
+Initialization: The Dragon, Flames, and Mario objects are created, and game variables like SCORE and LEVEL are reset.
+Game Events:
+Dragon Movement: The dragon moves vertically and shoots flames periodically.
+Flame Behavior: Flames move horizontally and are removed from the screen when they exit or collide with Mario.
+Player Input: The player controls Mario's movement using the UP and DOWN arrow keys.
+Collision Detection: Flames colliding with Mario or Mario touching boundaries trigger the game_over function.
+Scoring and Leveling:
+The player's score increases for each flame that exits the screen.
+Levels change based on the score, reducing Mario's vertical space to increase difficulty.
+Rendering:
+The game constantly updates the screen with the dragon, flames, Mario, score, level, and boundaries.
+b) Level Progression
+The game becomes progressively harder as the score increases:
+
+The gap between the top (cactus) and bottom (fire) boundaries decreases, limiting Mario's movement space.
+Levels are determined by the score:
+Level 1: Full vertical space.
+Level 2: Moderate reduction in space.
+Level 3: Significant reduction.
+Level 4: Minimum space to maneuver.
+c) Collision Handling
+Collisions are checked in two scenarios:
+
+If a flame collides with Mario, the game ends, and the game_over function is triggered.
+If Mario touches the cactus or fire boundaries, the game also ends.
+d) Scoring System
+The player's score is incremented each time a flame exits the left side of the screen without hitting Mario. The score is displayed in the top-left corner of the screen.
+
+4. Game Over Sequence
+When the game ends:
+
+The background music stops, and a "game over" sound is played.
+The game_over screen is displayed, showing a restart option.
+The top_score is updated if the player's score exceeds the previous high score.
+5. Game Start and Restart
+The game begins with the start_game function, which displays the start screen and waits for the player to press a key. If the game ends, the player can restart by pressing a key during the game_over screen.
+
+6. Sound and Visuals
+Background music (mario_theme.wav) plays continuously during gameplay.
+Sound effects (mario_dies.wav) are triggered during the game over sequence.
+Various images (start.png, end.png, maryo.png, etc.) are used for characters, flames, and UI.
